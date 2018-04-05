@@ -1,0 +1,32 @@
+.display-4{
+    font-family: Futura;
+}
+.lead{
+    font-family: Futura;
+}
+body {
+    background-image: url(http://usglobalimages.stratasys.com/en/Customer%20Support/Recycling/icon_recycling.png?v=635421413444149646);
+}
+.jumbotron {
+    text-align: center;
+    background-color: brown;
+}
+.media {
+    background-color: beige;
+    text-align: center;
+}
+#user-input {
+    background-color: green;
+    color: white;
+}
+#map {
+    height: 300px;
+    width: 100%;
+}
+.container{
+    background-color: 
+}
+.jumbotron.jumbotron-fluid{
+    background-color: forestgreen;
+}
+1 Comment

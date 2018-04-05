@@ -1,0 +1,99 @@
+<html>
+<head>
+   <meta charset="utf-8" />
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <title>Page Title</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+   <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+   <script src="assets/javascript/logic.js"></script>
+</head>
+<body>
+<div class = "container">
+   <div class="jumbotron jumbotron-fluid" "center-text">
+   <div class = "row">
+       <div class = "col-lg-12">
+           <h1 class="display-4">EcoFinder</h1>
+           <p class="lead">Find the Nearest Recylcing Option to You</p>
+           <p class="lead">Enter your Zip Code or City + "Recycle" into the search box.</p>
+       </div>
+   </div>
+</div>
+</div>
+<div id="floating-panel">
+    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+    <!--<input id="address" type="textbox" value="">
+    <input id="submit" type="button" value="Enter Zip Code">-->
+<div id="map"></div>
+<script>
+  // This example adds a search box to a map, using the Google Place Autocomplete
+  // feature. People can enter geographical searches. The search box will return a
+  // pick list containing a mix of places and predicted search terms.
+  // This example requires the Places library. Include the libraries=places
+  // parameter when you first load the API. For example:
+  // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+  function initAutocomplete() {
+    var map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: 33.8783544, lng: -84.0340045},
+      zoom: 13,
+      mapTypeId: 'roadmap'
+    });
+    // Create the search box and link it to the UI element.
+    var input = document.getElementById('pac-input');
+    var searchBox = new google.maps.places.SearchBox(input);
+    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+    // Bias the SearchBox results towards current map's viewport.
+    map.addListener('bounds_changed', function() {
+      searchBox.setBounds(map.getBounds());
+    });
+    var markers = [];
+    // Listen for the event fired when the user selects a prediction and retrieve
+    // more details for that place.
+    searchBox.addListener('places_changed', function() {
+      var places = searchBox.getPlaces();
+      if (places.length == 0) {
+        return;
+      }
+      // Clear out the old markers.
+      markers.forEach(function(marker) {
+        marker.setMap(null);
+      });
+      markers = [];
+      // For each place, get the icon, name and location.
+      var bounds = new google.maps.LatLngBounds();
+      places.forEach(function(place) {
+        if (!place.geometry) {
+          console.log("Returned place contains no geometry");
+          return;
+        }
+        var icon = {
+          url: place.icon,
+          size: new google.maps.Size(71, 71),
+          origin: new google.maps.Point(0, 0),
+          anchor: new google.maps.Point(17, 34),
+          scaledSize: new google.maps.Size(25, 25)
+        };
+        // Create a marker for each place.
+        markers.push(new google.maps.Marker({
+          map: map,
+          icon: icon,
+          title: place.name,
+          position: place.geometry.location
+        }));
+        if (place.geometry.viewport) {
+          // Only geocodes have viewport.
+          bounds.union(place.geometry.viewport);
+        } else {
+          bounds.extend(place.geometry.location);
+        }
+      });
+      map.fitBounds(bounds);
+    });
+  }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBt3hfOL3CTe8g4SM1Hn3oOzyZXXzkXz8s&libraries=places&callback=initAutocomplete"
+     async defer></script>
+     <!--<script src="https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyBt3hfOL3CTe8g4SM1Hn3oOzyZXXzkXz8s"</script>-->
+</body>
+</html>
