@@ -1,0 +1,22 @@
+.container-fluid {
+    font-family:'Bungee Inline', cursive; 
+    background-image:url(http://1.bp.blogspot.com/-zKjJNHFM31c/VENohvG6omI/AAAAAAAAHkY/09VFQXSRDAg/s1600/LivingDesert%2B001%2Bsml.jpg);
+    background-color:rgb(134, 206, 230);
+    background-blend-mode: multiply;
+    background-size: 100%;
+    color:white;
+    height:800px;
+}
+.aron {
+    height: 200px;
+    width: 200px;
+}
+.bennie {
+    height:200px;
+    width:200px;
+    align:center;
+}
+.bruder{
+    height:200px;
+    width:200px;
+}
