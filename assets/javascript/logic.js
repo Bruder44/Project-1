@@ -26,16 +26,16 @@ var config = {
     
     console.log(newuser);
 
-    alert("email added!");
+    alert("Thanks! you're email has been successfully added!");
 
     $("#email").val(" ");
 
-    var queryURL = "https://newsapi.org/v2/top-headlines?q=recycling&apiKey=93310ac992ea4b76a7721436c947190e";
+    //.var queryURL = "https://newsapi.org/v2/top-headlines?q=recycling&apiKey=93310ac992ea4b76a7721436c947190e";
 
-    $.ajax({
-      url: queryURL,
-      method: "GET"
-    }).then(function(response) 
-    {console.log(response);
-      $("#links").text(response)
-  })})});
+    //$.ajax({
+    //  url: queryURL,
+    //  method: "GET"
+   // }).then(function(response) 
+   // {console.log(response);
+   //   $("#links").text(response)
+  })});
